@@ -39,9 +39,22 @@ export default StyleSheet.create({
         width: 250, 
         maxHeight: 220,
         marginTop: 10, 
-        flex: 1,
         backgroundColor: "#f7f7f7",
         borderColor: "#f7f7f7"
+      },
+        containerhome: {
+        flex: 1,
+        alignItems: "center",
+        paddingHorizontal: 10,
+        paddingBottom: 0,
+        width: '100%',
+    },
+        logohome: {
+        flex: 1,
+        alignSelf: "flex-start",
+        width: 250, 
+        maxHeight: 220,
+        marginTop: 70 
       },
       containerinputforget:{
         flex: 1,
@@ -81,7 +94,7 @@ export default StyleSheet.create({
         height: 45,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 7,
+        borderRadius: 20,
         fontFamily: ''
     },
     textSubmit: {
@@ -89,11 +102,16 @@ export default StyleSheet.create({
         fontSize: 18,
         fontFamily: ''
     },
-    textSimple: {
-        flex: 1,
+    texthome: {
         color: '#000000',
         fontSize: 20,
-        fontFamily: ''
+        fontWeight:"bold"
+    },
+    textsimple: {
+        color: '#000000',
+        fontSize: 16,
+        paddingTop: 40,
+        paddingBottom:100
     },
 
     button: {
@@ -143,10 +161,34 @@ export default StyleSheet.create({
         alignItems: "center",
         marginTop: 10,
         justifyContent: "center",
-    }
+    },
 
+    buttonHome: {
+        backgroundColor: '#0e6ef7',
+        width: '80%',
+        height: 45,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 20,
+        
+    },
+    containerbutton: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "flex-start",
+        paddingHorizontal: 10,
+        paddingTop: 25,
+        width: '100%',
+    },
 
-
+    buttonLogout: {
+        backgroundColor: '#FF0000',
+        width: '50%',
+        height: 45,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 20,
+    },
 
 
 })

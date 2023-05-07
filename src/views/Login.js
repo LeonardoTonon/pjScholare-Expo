@@ -33,7 +33,7 @@ function Login ({navigation}) {
                 />
                 <TouchableOpacity style={Style.buttonSubmit}
                     onPress={() => {
-                      navigation.navigate('');
+                      navigation.navigate('Home');
                     }}>
                     <Text
                         style={Style.textSubmit}>

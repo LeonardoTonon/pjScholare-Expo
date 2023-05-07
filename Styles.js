@@ -182,13 +182,11 @@ export default StyleSheet.create({
     },
 
     buttonLogout: {
-        backgroundColor: '#FF0000',
+        backgroundColor: '#fe3a3b',
         width: '50%',
         height: 45,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 20,
     },
-
-
 })

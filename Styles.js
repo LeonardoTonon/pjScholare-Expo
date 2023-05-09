@@ -123,8 +123,9 @@ export default StyleSheet.create({
     },
 
     textAdd: {
+        alignItems: "flex-start",
         color: '#000000',
-        fontSize: 20,
+        fontSize: 19,
         fontFamily: '',
         padding: 10
     },
@@ -142,19 +143,29 @@ export default StyleSheet.create({
         paddingHorizontal: 20,
         paddingBottom: 5
     },
+    
+    textsimpleadd: {        
+        fontSize: 18,
+        marginTop: 5,
+        alignSelf: "flex-start",
+        paddingHorizontal: 10,
+        paddingBottom: 5,
+        paddingTop:10
+    },
+
     containerText: {
         flex: 1,
         alignItems: 'flex-start',
         justifyContent: 'flex-start'
     },
     buttonAdd: {
+        alignSelf: "center",
         backgroundColor: '#0e6ef7',
-        width: '100%',
+        width: '80%',
         height: 45,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 7,
-        fontFamily: ''
+        borderRadius: 20,
     },
     forget: {
         flexDirection: "row",
@@ -170,7 +181,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 20,
-        
     },
     containerbutton: {
         flex: 1,
@@ -189,4 +199,14 @@ export default StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 20,
     },
+
+    imageadd: {
+        flex: 1,
+        alignSelf: "center",
+        width: 320, 
+        maxHeight: 320,
+        marginTop: 20, 
+        borderColor: "#000000",
+        borderWidth:1
+      },
 })

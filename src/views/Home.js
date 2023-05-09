@@ -17,7 +17,7 @@ function Home({ navigation }) {
                 </Text>
                 <TouchableOpacity style={Style.buttonHome}
                     onPress={() => {
-                        navigation.navigate('Adicionais')
+                        navigation.navigate('Additional')
                     }}>
                     <Text style={Style.textSubmit}>Escanear Gabarito</Text>
                 </TouchableOpacity>

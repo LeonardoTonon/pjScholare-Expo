@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Login from '../views/Login';
 import Forget from '../views/Forget';
 import Home from '../views/Home';
+import Additional from "../views/Additional"
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,10 @@ const StackNavigator = () => {
         <Stack.Group screenOptions={{ headerShown: false}}>
             <Stack.Screen name="Home" component={Home}
                 options={{ title: '' }}/>
+        </Stack.Group>
+        <Stack.Group screenOptions={{ headerShown: true }}>
+            <Stack.Screen name="Additional" component={Additional}
+                options={{ title: 'Informações iniciais' }} />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>

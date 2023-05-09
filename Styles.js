@@ -86,7 +86,6 @@ export default StyleSheet.create({
         borderColor: "#646363",
         borderWidth: 1,
         padding: 10,
-        fontFamily: ''
     },
     buttonSubmit: {
         backgroundColor: '#0e6ef7',
@@ -95,7 +94,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 20,
-        fontFamily: ''
     },
     textSubmit: {
         color: '#fff',

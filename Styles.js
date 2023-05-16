@@ -207,4 +207,26 @@ export default StyleSheet.create({
         borderColor: "#000000",
         borderWidth:1
       },
+
+      backgroundloading: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: 1,
+      },
+      loadingContainer: {
+        alignItems: "center",
+        justifyContent:"center",
+        top: '35%',
+        //left: '50%',
+        zIndex: 2,
+      },
+      loadingAnimation: {
+        width: 200,
+        height: 200,
+      },
+      
 })

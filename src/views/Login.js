@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, KeyboardAvoidingView, Image, TextInput, Text, Modal, Button } from "react-native";
+import React, { useState } from "react";
+import { View, TouchableOpacity, KeyboardAvoidingView, Image, TextInput, Text, Modal, StyleSheet } from "react-native";
 import LottieView from 'lottie-react-native';
 import Style from '../../Styles';
 
@@ -10,14 +10,36 @@ function Login({ navigation }) {
 
   const handleLogin = () => {
     setLoading(true);
+
+    // Simulação de chamada à API
+    // Substitua esta parte pelo seu código real de chamada à API
     setTimeout(() => {
       setLoading(false);
-      navigation.navigate('Home');
-    }, 10000);
+
+      // Simulação de resposta da API
+      const statusCode = 200; // Altere para 200 para simular uma resposta de sucesso
+      if (statusCode === 500) {
+        setModalMessage('Erro ao fazer login. Por favor, verifique suas informações e tente novamente.');
+        setShowModal(true);
+      } else {
+        navigation.navigate('Home');
+      }
+    }, 3000);
   };
 
   return (
     <KeyboardAvoidingView style={Style.background}>
+      <Modal visible={showModal} transparent>
+        <View style={Style.modalContainer}>
+          <View style={Style.modalContent}>
+            <Text style={Style.modalMessage}>{modalMessage}</Text>
+            <TouchableOpacity style={Style.modalButton} onPress={() => setShowModal(false)}>
+              <Text style={Style.modalButtonText}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
       {loading && (
         <View style={Style.backgroundloading}>
           <View style={Style.loadingContainer}>
@@ -30,6 +52,7 @@ function Login({ navigation }) {
           </View>
         </View>
       )}
+
       <View style={Style.containerlogo}>
         <Image
           source={require('../assets/login.png')}
@@ -37,6 +60,7 @@ function Login({ navigation }) {
           style={Style.login}
         />
       </View>
+
       <View style={Style.container}>
         <Text style={Style.text}>
           E-mail
@@ -46,8 +70,9 @@ function Login({ navigation }) {
           placeholder="Digite seu e-mail"
           placeholderTextColor="#706f6f"
           autoCorrect={false}
-          onChangeText={() => { }}
+          onChangeText={() => {}}
         />
+
         <Text style={Style.text}>
           Senha
         </Text>
@@ -57,8 +82,9 @@ function Login({ navigation }) {
           placeholderTextColor="#706f6f"
           autoCorrect={false}
           secureTextEntry={true}
-          onChangeText={() => { }}
+          onChangeText={() => {}}
         />
+
         <TouchableOpacity
           style={Style.buttonSubmit}
           onPress={handleLogin}
@@ -68,6 +94,7 @@ function Login({ navigation }) {
             Acessar
           </Text>
         </TouchableOpacity>
+
         <View style={Style.forget}>
           <TouchableOpacity
             onPress={() => {

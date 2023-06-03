@@ -224,9 +224,39 @@ export default StyleSheet.create({
         //left: '50%',
         zIndex: 2,
       },
+      
       loadingAnimation: {
         width: 200,
         height: 200,
+      },
+
+      modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      },
+      modalContent: {
+        backgroundColor: '#FFF',
+        padding: 15,
+        borderRadius: 10,
+      },
+      modalMessage: {
+        fontSize: 16,
+        marginBottom: 15,
+        textAlign: 'center',
+      },
+      modalButton: {
+        backgroundColor: '#0e6ef7',
+        borderRadius: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        alignSelf: 'center',
+      },
+      modalButtonText: {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 16,
       },
       
 })

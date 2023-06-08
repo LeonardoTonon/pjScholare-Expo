@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { Camera } from 'expo-camera';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import LottieView from 'lottie-react-native';
+import * as FileSystem from 'expo-file-system';
 
 export default class CameraScreen extends Component {
   state = {
@@ -30,20 +31,21 @@ export default class CameraScreen extends Component {
   uploadPicture = async (photo) => {
     const apiUrl = 'https://jhax8x3b6a.execute-api.us-east-1.amazonaws.com/tmp-lambda-efs';
 
-    const formData = new FormData();
-    formData.append('photo', {
-      uri: photo.uri,
-      type: 'image/jpeg',
-      name: 'photo.jpg',
-    });
-
     try {
+      const base64Photo = await FileSystem.readAsStringAsync(photo.uri, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+
+      const requestData = {
+        photo: base64Photo,
+      };
+
       const response = await fetch(apiUrl, {
         method: 'POST',
-        body: formData,
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify(requestData),
       });
 
       const responseJson = await response.json();

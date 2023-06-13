@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, TouchableOpacity, KeyboardAvoidingView, Image, TextInput, Text, Modal, StyleSheet } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LottieView from 'lottie-react-native';
 import Style from '../../Styles';
+import { EmailContext } from "../components/EmailContext";
 
 function Login({ navigation }) {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { email, setEmail } = useContext(EmailContext);
+
+  const handleEmailChange = (text) => {
+    setEmail(text);
+  };
+
   const handleLogin = () => {
-    const apiUrl = 'https://f1ce-177-215-76-129.ngrok-free.app/api/mobile_login'; 
+    const apiUrl = 'https://scholare-production.up.railway.app/api/mobile_login';
     setLoading(true);
 
     const requestData = {
@@ -29,7 +35,7 @@ function Login({ navigation }) {
     })
       .then(response => {
         if (response.status === 200) {
-          return response.json(); // Alteração aqui
+          return response.json();
         } else if (response.status === 500) {
           setModalMessage('Erro ao fazer login. Por favor, verifique suas informações e tente novamente.');
           setShowModal(true);
@@ -37,7 +43,8 @@ function Login({ navigation }) {
       })
       .then(data => {
         console.log(data);
-        AsyncStorage.setItem('token', data.token); 
+        AsyncStorage.setItem('auth_token', data.auth_token); // Correção no nome da chave
+        setEmail(email); // Atualizar o valor do email no contexto
         navigation.navigate('Home');
       })
       .catch(error => {
@@ -91,9 +98,8 @@ function Login({ navigation }) {
           placeholder="Digite seu e-mail"
           placeholderTextColor="#706f6f"
           autoCorrect={false}
-          onChangeText={text => setEmail(text)}
+          onChangeText={handleEmailChange} // Atualizar o valor do email no contexto
         />
-
         <Text style={Style.text}>
           Senha
         </Text>
@@ -108,10 +114,7 @@ function Login({ navigation }) {
 
         <TouchableOpacity
           style={Style.buttonSubmit}
-          onPress={() => {
-            navigation.navigate('Home');
-          }}
-          // onPress={handleLogin}
+          onPress={handleLogin}
           disabled={loading}
         >
           <Text style={Style.textSubmit}>

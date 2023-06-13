@@ -36,9 +36,7 @@ export default class CameraScreen extends Component {
         encoding: FileSystem.EncodingType.Base64,
       });
 
-      const requestData = {
-        photo: base64Photo,
-      };
+      const requestData = base64Photo;
 
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -49,14 +47,15 @@ export default class CameraScreen extends Component {
       });
 
       const responseJson = await response.json();
+      console.warn(responseJson);
       const statusCode = response.status;
 
       this.setState({ loading: false, responseCode: statusCode });
 
       if (statusCode === 200) {
-        this.showModalByStatusCode(200, responseJson.message);
+        this.showModalByStatusCode(200, responseJson);
       } else if (statusCode === 500) {
-        this.showModalByStatusCode(500, responseJson.message);
+        this.showModalByStatusCode(500, responseJson);
       }
     } catch (error) {
       this.setState({ loading: false });
@@ -73,6 +72,7 @@ export default class CameraScreen extends Component {
     } else if (statusCode === 500) {
       this.setState({ showModal: true, modalMessage });
     }
+    console.warn(modalMessage);
   };
 
   closeModal = () => {

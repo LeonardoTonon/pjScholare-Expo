@@ -47,7 +47,6 @@ export default class CameraScreen extends Component {
       });
 
       const responseJson = await response.json();
-      console.warn(responseJson);
       const statusCode = response.status;
 
       this.setState({ loading: false, responseCode: statusCode });
@@ -72,7 +71,6 @@ export default class CameraScreen extends Component {
     } else if (statusCode === 500) {
       this.setState({ showModal: true, modalMessage });
     }
-    console.warn(modalMessage);
   };
 
   closeModal = () => {
@@ -89,19 +87,18 @@ export default class CameraScreen extends Component {
       return (
         <View style={styles.cameraContainer}>
           {/* Modal in case of 200 */}
-          <Modal visible={showModal && responseCode === 200} transparent animationType="fade" onRequestClose={this.closeModal}>
-            <View style={styles.modalContainer}>
-              <AntDesign name="checkcircle" size={60} color="green" style={{ marginTop: 30 }} />
+          <Modal visible={showModal && responseCode === 200} transparent={true} animationType="slide" onRequestClose={this.closeModal}>
+          <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+          <AntDesign name="checkcircle" size={40} color="green" style={{ marginTop: 0 }} />
               <Text style={styles.modaltitle}>Correção realizada com sucesso!</Text>
-              <Text style={styles.modalText}>Nome do Aluno:</Text>
-              <Text style={styles.modalText}>Turma:</Text>
-              <Text style={styles.modalText}>Nota: {modalMessage}</Text>
-              <TouchableOpacity onPress={this.closeModal}>
-                <Text style={styles.closeButton}>Fechar</Text>
-              </TouchableOpacity>
-            </View>
-          </Modal>
-
+              <Text style={styles.modalText}>Nota do aluno: {modalMessage}</Text>
+            <TouchableOpacity onPress={this.closeModal}>
+              <Text style={styles.closeerrorButton}>Fechar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        </Modal>
           {/* Modal in case of 500 */}
           <Modal visible={showModal && responseCode === 500} animationType="slide" transparent={true} onRequestClose={this.closeModal}>
             <View style={styles.modalerrorContainer}>
@@ -168,27 +165,17 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   },
-  modalContainer: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
   modalText: {
+    fontSize: 15,
+    marginBottom: 5,
+  },
+  modaltitle: {
     color: '#000000',
     fontSize: 18,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
-    textAlign: 'right',
-    marginHorizontal: 20,
-  },
-  modaltitle: {
-    color: '#000000',
-    fontSize: 21,
-    fontWeight: 'bold',
-    alignSelf: 'flex-start',
-    marginTop: 50,
-    marginHorizontal: 20,
-    marginBottom: 50,
+    marginTop: 10,
+    marginBottom: 10,
   },
   closeButton: {
     color: '#000000',
@@ -221,12 +208,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
   modalerrorContent: {
     backgroundColor: 'white',
-    padding: 20,
+    padding: 10,
     borderRadius: 10,
     alignItems: 'center',
   },
+
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+
   modalerrrorText: {
     fontSize: 18,
     marginBottom: 20,

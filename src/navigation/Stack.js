@@ -7,6 +7,8 @@ import Home from '../views/Home';
 import Additional from "../views/Additional"
 import Cam from "../components/Camera"
 import { EmailProvider } from "../components/EmailContext";
+import { Ionicons } from '@expo/vector-icons';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -27,8 +29,23 @@ const StackNavigator = () => {
           <Stack.Group screenOptions={{ headerShown: true }}>
             <Stack.Screen name="Additional" component={Additional} options={{ title: 'Informações iniciais' }} />
           </Stack.Group>
-          <Stack.Group screenOptions={{ headerShown: true, headerTransparent: true }} >
-            <Stack.Screen name="Cam" component={Cam} options={{ title: '' }} />
+          <Stack.Group screenOptions={{ headerShown: true, headerTransparent: true }}>
+            <Stack.Screen
+              name="Cam"
+              component={Cam}
+              options={({ navigation }) => ({
+                title: '',
+                headerLeft: () => (
+                  <Ionicons
+                    name="md-arrow-back-outline"
+                    size={24}
+                    color="white"
+                    onPress={() => navigation.goBack()}
+                    style={{ marginLeft: 0 }}
+                  />
+                ),
+              })}
+            />
           </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>

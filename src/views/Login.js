@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, TouchableOpacity, KeyboardAvoidingView, Image, TextInput, Text, Modal, StyleSheet } from "react-native";
+import { View, TouchableOpacity, KeyboardAvoidingView, Image, TextInput, Text, Modal, StyleSheet, Linking } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LottieView from 'lottie-react-native';
 import Style from '../../Styles';
@@ -36,15 +36,14 @@ function Login({ navigation }) {
       .then(response => {
         if (response.status === 200) {
           return response.json();
-        } else if (response.status === 500) {
+        } else if (response.status === 401) {
           setModalMessage('Erro ao fazer login. Por favor, verifique suas informações e tente novamente.');
           setShowModal(true);
         }
       })
       .then(data => {
-        console.log(data);
-        AsyncStorage.setItem('auth_token', data.auth_token); // Correção no nome da chave
-        setEmail(email); // Atualizar o valor do email no contexto
+        AsyncStorage.setItem('auth_token', data.auth_token);
+        setEmail(email);
         navigation.navigate('Home');
       })
       .catch(error => {
@@ -55,13 +54,18 @@ function Login({ navigation }) {
       });
   };
 
+  const handleCreateAccount = () => {
+    const url = 'https://scholare-production.up.railway.app/users/sign_up'; // URL externa para a criação da conta
+    Linking.openURL(url);
+  };
+
   return (
     <KeyboardAvoidingView style={Style.background}>
       <Modal visible={showModal} transparent>
         <View style={Style.modalContainer}>
           <View style={Style.modalContent}>
             <Text style={Style.modalMessage}>{modalMessage}</Text>
-            <TouchableOpacity style={Style.modalButton} onPress={() => setShowModal(false)}>
+            <TouchableOpacity style={Style.modalButtonText} onPress={() => setShowModal(false)}>
               <Text style={Style.modalButtonText}>OK</Text>
             </TouchableOpacity>
           </View>
@@ -98,7 +102,7 @@ function Login({ navigation }) {
           placeholder="Digite seu e-mail"
           placeholderTextColor="#706f6f"
           autoCorrect={false}
-          onChangeText={handleEmailChange} // Atualizar o valor do email no contexto
+          onChangeText={handleEmailChange}
         />
         <Text style={Style.text}>
           Senha
@@ -133,6 +137,14 @@ function Login({ navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
+        <View style={Style.forget}>
+          <TouchableOpacity onPress={handleCreateAccount}>
+            <Text style={{ fontWeight: "bold" }}>
+              Criar uma conta
+            </Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     </KeyboardAvoidingView>
   );

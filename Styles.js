@@ -17,30 +17,28 @@ export default StyleSheet.create({
       login: {
         flex:1,
         alignSelf: "flex-start",
-        width: 400, 
-        maxHeight: 350, 
-        marginTop: 30,
-        flex: 1,
-        backgroundColor: "#f7f7f7",
-        borderColor: "#f7f7f7"
+        width: 700, 
+        height: 'auto', 
+        backgroundColor: "#f8f8f8",
+        borderColor: "#f8f8f8"
       },
       containerforget: {
         flex: 1,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        backgroundColor: "#f7f7f7",
-        marginBottom:30,
+        backgroundColor: "#f8f8f8",
+        marginBottom:40,
         marginTop:40,
-        flexDirection:"row"
+        //flexDirection:"row"
       },
       logoforget: {
         flex: 1,
         alignSelf: "center",
-        width: 250, 
-        maxHeight: 220,
-        marginTop: 10, 
-        backgroundColor: "#f7f7f7",
-        borderColor: "#f7f7f7"
+        width: 500, 
+        height: 'auto',
+        // marginTop: 10, 
+        backgroundColor: "#f8f8f8",
+        borderColor: "#f8f8f8"
       },
         containerhome: {
         flex: 1,
@@ -68,7 +66,7 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#f7f7f7',
+        backgroundColor: '#f8f8f8',
       },
     container: {
         flex: 1,
@@ -247,16 +245,16 @@ export default StyleSheet.create({
         textAlign: 'center',
       },
       modalButton: {
-        backgroundColor: '#0e6ef7',
         borderRadius: 20,
         paddingVertical: 10,
         paddingHorizontal: 20,
         alignSelf: 'center',
       },
       modalButtonText: {
-        color: '#FFF',
-        fontWeight: 'bold',
-        fontSize: 16,
+        color: '#000000',
+        fontSize: 18,
+        marginTop: 0,
+        textDecorationLine: 'underline',
+        alignSelf: 'center',
       },
-      
 })
